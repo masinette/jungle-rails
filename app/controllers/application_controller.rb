@@ -29,4 +29,8 @@ class ApplicationController < ActionController::Base
     cookies[:cart]
   end
 
+  def line_items
+    @line_items = line_items
+  end
+
 end
