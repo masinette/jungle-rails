@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @line_items = Order.joins("INNER JOIN products ON product_id = product.id")
   end
 
   def create
