@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -31,6 +33,26 @@ class ApplicationController < ActionController::Base
 
   def line_items
     @line_items = line_items
+  end
+
+
+  
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :exception
+  
+  # Update the application controller with new methods to look up the user, 
+  def current_user
+  # if they're logged in, and save their user object to a variable called @current_user. 
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+  # The helper_method allows us to use @current_user in our view files. 
+  helper_method :current_user
+
+  # Authorize is for sending someone to the login page if they aren't logged in 
+  # - this keeps certain pages our site secure... user's have to login before seeing them.
+  def authorize
+    redirect_to '/login' unless current_user
   end
 
 end

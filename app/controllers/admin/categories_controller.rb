@@ -1,4 +1,7 @@
 class Admin::CategoriesController < ApplicationController
+  # force user's to login before they can see the actions in this controller
+  before_filter :authorize
+
   def index
     @categories = Category.all
   end
