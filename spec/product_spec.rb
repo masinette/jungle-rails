@@ -1,6 +1,7 @@
 require 'rails_helper'
 require 'product'
 
+
 RSpec.describe Product, type: :model do
   it "is valid with valid attributes" do
     
